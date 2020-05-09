@@ -1,9 +1,69 @@
 <html>
+
+<img src="Images/Main_Key_Empty.png" alt="Key" id="Left_Key" onclick="LKey()">
+<img src="Images/Main_Key_Empty.png" alt="Key" id="Right_Key" onclick="RKey()">
+
 <style>
+    #Left_Key {
+        position: relative;
+        left: 140px;
+        width: 90px;
+        height: 120px;
+        top: 450px;
+        cursor: pointer;
+    }
+    
+    #Right_Key {
+        position: relative;
+        left: 900px;
+        width: 90px;
+        height: 120px;
+        top: 450px;
+        cursor: pointer;
+    }
+    
     html {
-        background-image: url("\Images/Table.png");
+        background-image: url("Images/Table.png");
         background-size: 100% 100%;
     }
 </style>
+
+
+<script>
+    Key_sound = new Audio("Sounds/Key.mp3");
+    Lkey_Active = false;
+    Rkey_Active = false;
+
+    function LKey() {
+        var Lkeyd = document.getElementById("Left_Key");
+        if (Lkeyd.src.match("Images/Main_Key_Empty.png")) {
+            Key_sound.play()
+            Lkey_Active = true;
+            Lkeyd.src = "Images/Main_Key_Active.png";
+
+        } else {
+            Lkey_Active = false;
+            Key_sound.play();
+            Lkeyd.src = "Images/Main_Key_Empty.png";
+
+        }
+    }
+
+
+    function RKey() {
+        var Rkeyd = document.getElementById("Right_Key");
+        if (Rkeyd.src.match("Images/Main_Key_Empty.png")) {
+            Key_sound.play()
+            Rkey_Active = true;
+            Rkeyd.src = "Images/Main_Key_Active.png";
+
+
+        } else {
+            Rkey_Active = false;
+            Key_sound.play();
+            Rkeyd.src = "Images/Main_Key_Empty.png";
+        }
+    }
+</script>
 
 </html>
