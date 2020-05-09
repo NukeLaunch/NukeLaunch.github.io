@@ -13,7 +13,7 @@
 
 <img src="Images/Main_Key_Empty.png" alt="Key" id="Left_Key" onclick="LKey()">
 <img src="Images/Main_Key_Empty.png" alt="Key" id="Right_Key" onclick="RKey()">
-
+<img src="Images/Main_Switch_OFF.png" alt="switch" id="Switch" onclick="Switch()">
 <style>
     #Left_Key {
         position: relative;
@@ -32,13 +32,43 @@
         top: 450px;
         cursor: pointer;
     }
+    
+    #Switch {
+        position: relative;
+        left: 400px;
+        width: 90px;
+        height: 120px;
+        top: 450px;
+        cursor: pointer;
+    }
 </style>
 
 
 <script>
-    Key_sound = new Audio("Sounds/Key.mp3");
+    Switch_error = new Audio("Sounds/Sound_error.wav");
+    Switch_sound = new Audio("Sounds/Switch.wav");
+    Key_sound = new Audio("Sounds/Key.wav");
     Lkey_Active = false;
     Rkey_Active = false;
+    Switch_Active = false;
+
+    function Switch() {
+        var Switchd = document.getElementById("Switch");
+        if (Switchd.src.match("Images/Main_Switch_OFF.png") && Lkey_Active == true && Rkey_Active == true) {
+            Switch_Active = true;
+            Switchd.src = "Images/Main_Switch_ON.png"
+            Switch_sound.play();
+
+        } else if (Switchd.src.match("Images/Main_Switch_ON.png") && Switch_Active == true) {
+            Switch_Active = false;
+            Switchd.src = "Images/Main_Switch_OFF.png";
+            Switch_sound.play();
+        } else {
+            Switch_Active = false;
+            Switchd.src = "Images/Main_Switch_OFF.png"
+            Switch_error.play();
+        }
+    }
 
     function LKey() {
         var Lkeyd = document.getElementById("Left_Key");
