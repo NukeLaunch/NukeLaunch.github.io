@@ -1,7 +1,7 @@
 <html>
 <meta charset="UTF-8">
 <meta name="description" content="A simulator of a Nuclear launch">
-<meta name="keywords" content="Nuke, Launch, NukeWar, Nuke Launch">
+<meta name="keywords" content="Nuke, Launch, NukeWair, Nuke Launch">
 <meta name="author" content="Cheese122">
 <!--Background image prioritised-->
 <Style>
@@ -11,46 +11,86 @@
     }
 </Style>
 
+<img src="Images/Button.png" alt="Button" id="Button" onclick="Button()">
 <img src="Images/Main_Key_Empty.png" alt="Key" id="Left_Key" onclick="LKey()">
 <img src="Images/Main_Key_Empty.png" alt="Key" id="Right_Key" onclick="RKey()">
 <img src="Images/Main_Switch_OFF.png" alt="switch" id="Switch" onclick="Switch()">
+<img src="Images/Town_Not_Nuked.png" alt="Town" id="Town">
 <style>
+    #Town {
+        position: relative;
+        top: 38px;
+        width: 500px;
+        height: 275px;
+        left: -75px;
+    }
+    
     #Left_Key {
         position: relative;
-        left: 140px;
+        left: 100px;
         width: 90px;
         height: 120px;
-        top: 450px;
+        top: 300px;
         cursor: pointer;
+        border-radius: 5px;
     }
     
     #Right_Key {
         position: relative;
-        left: 900px;
+        left: 800px;
         width: 90px;
         height: 120px;
-        top: 450px;
+        top: 300px;
         cursor: pointer;
+        border-radius: 5px;
+    }
+    
+    #Button {
+        position: relative;
+        left: 450px;
+        width: 200px;
+        height: 200px;
+        top: 300px;
+        cursor: pointer;
+        border-radius: 5px;
     }
     
     #Switch {
         position: relative;
-        left: 400px;
+        left: 350px;
         width: 90px;
         height: 120px;
-        top: 450px;
+        top: 300px;
         cursor: pointer;
+        border-radius: 5px;
     }
 </style>
-
+<audio id="NukeLaunchLaunchAudio"> 
+    <source src="Sounds/Nuke_Launch.wav", type="audio/mpeg">
+</audio>
 
 <script>
+    audioTest = document.getElementById("NukeLaunchLaunchAudio");
     Switch_error = new Audio("Sounds/Sound_error.wav");
     Switch_sound = new Audio("Sounds/Switch.wav");
     Key_sound = new Audio("Sounds/Key.wav");
     Lkey_Active = false;
     Rkey_Active = false;
     Switch_Active = false;
+    Buttond = false;
+
+
+    function Button() {
+        var Buttond = document.getElementById("Button");
+        if (Lkey_Active == true && Rkey_Active == true && Switch_Active == true) {
+            Buttond = true;
+            audioTest.loop = true;
+            audioTest.play();
+            Nuke_Launch();
+        } else {
+            Switch_error.play();
+        }
+    }
 
     function Switch() {
         var Switchd = document.getElementById("Switch");
@@ -100,8 +140,17 @@
             Rkeyd.src = "Images/Main_Key_Empty.png";
         }
     }
+
+    function Nuke_Launch() {
+        var NukeTown = document.getElementById("Town");
+        NukeTown.src = "Images/Town_Nuked.png";
+    }
 </script>
 
+
+
 <title>Nuke Launch</title>
+
+
 
 </html>
